@@ -118,6 +118,9 @@ SGARMREMATYAML = $(SGARMROOTDIR)/input/arm-remat.yaml
 SGMINIMALROOTDIR   = $(UNISONDIR)/src/Unison/Target/Minimal/SpecsGen
 SGMINIMALINPUTYAML = $(SGMINIMALROOTDIR)/input/minimal.yaml
 
+SGMOSROOTDIR   = $(UNISONDIR)/src/Unison/Target/MOS/SpecsGen
+SGMOSINPUTYAML = $(SGMOSROOTDIR)/input/mos.yaml
+
 build-specsgen:
 	$(STACKBIN) build unison-specsgen \
 	--ghc-options="$(UNISON_GHC_CONFIG)" \
@@ -131,7 +134,7 @@ install-specsgen:
 	cp $(UNISONSPECSGENDIR)/build/specsgen $(BINDIR)
 
 run-specsgen: run-specsgen-hexagon run-specsgen-mips run-specsgen-arm \
-	            run-specsgen-minimal
+	            run-specsgen-minimal run-specsgen-mos
 
 run-specsgen-hexagon:
 	specsgen --targetname=Hexagon $(SGHEXAGONINPUTYAML) $(SGHEXAGONAUXYAML) \
@@ -162,3 +165,9 @@ run-specsgen-minimal:
 	specsgen --targetname=Minimal $(SGMINIMALINPUTYAML) $(SGMINIMALAUXYAML) \
 	         --outputdir=$(SGMINIMALROOTDIR) \
 	         --infiniteregclass M32
+
+
+run-specsgen-mos:
+	specsgen --targetname=MOS $(SGMOSINPUTYAML) $(SGMOSAUXYAML) \
+	         --outputdir=$(SGMOSROOTDIR) \
+	         --infiniteregclass M8 --infiniteregclass M16
