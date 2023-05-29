@@ -16,9 +16,11 @@ import Unison.Target.Hexagon as Hexagon (target)
 import Unison.Target.ARM as ARM (target)
 import Unison.Target.Mips as Mips (target)
 import Unison.Target.Minimal as Minimal (target)
+import Unison.Target.MOS as MOS (target)
 
 unisonTargets =
     [("Hexagon", Any Hexagon.target),
      ("ARM", Any ARM.target),
      ("Mips", Any Mips.target),
-     ("Minimal", Any Minimal.target)]
+     ("Minimal", Any Minimal.target),
+     ("MOS", Any MOS.target)]
